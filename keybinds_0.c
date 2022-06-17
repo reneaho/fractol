@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keybinds_0.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 16:56:09 by raho              #+#    #+#             */
+/*   Updated: 2022/06/17 16:56:12 by raho             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 static void	close_program(t_node *tool)
@@ -8,7 +20,7 @@ static void	close_program(t_node *tool)
 	exit (0);
 }
 
-void erase_map(t_node *tool)
+void	erase_map(t_node *tool)
 {
 	int	x;
 	int	y;
@@ -26,7 +38,7 @@ void erase_map(t_node *tool)
 	}
 }
 
-void    keybinds_0(t_node *tool)
+void	keybinds_0(t_node *tool)
 {
 	if (tool->last_key == LINUX_W || tool->last_key == MAC_W)
 	{
@@ -35,5 +47,5 @@ void    keybinds_0(t_node *tool)
 	}
 	if (tool->last_key == LINUX_ESC || tool->last_key == MAC_ESC)
 		close_program(tool);
-	//keybinds_1(tool);
+	keybinds_1(tool);
 }

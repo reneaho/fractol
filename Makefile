@@ -23,7 +23,7 @@ SRCS = main.c do_events.c keybinds_0.c keybinds_1.c \
 		draw_mandelbrot.c initialize_struct.c check_input.c \
 		image_pixel_put.c
 OBJS = $(SRCS:.c=.o)
-MLXLINK = -lmlx -lXext -lX11
+MLXLINK = -lmlx -framework OpenGL -framework Appkit
 
 all: $(NAME)
 

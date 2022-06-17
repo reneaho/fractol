@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                              :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raho <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 18:43:49 by raho              #+#    #+#             */
-/*   Updated: 2022/05/26 18:30:45 by raho             ###   ########.fr       */
+/*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
+/*   Updated: 2022/06/17 16:57:50 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ typedef struct s_node
 	void	*win_ptr;
 	void	*img_ptr;
 	char	*img_addr;
-	int	bits_per_pixel;
-	int	size_line;
-	int	endian;
-	int	last_key;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+	int		last_key;
 	int		fractol;
 }		t_node;
 
