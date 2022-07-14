@@ -18,7 +18,7 @@ static void	usage_exit(void)
 	ft_putendl("fractols:");
 	ft_putendl("Mandelbrot");
 	ft_putendl("Julia");
-	ft_putendl("Third");
+	ft_putendl("Burning Ship");
 	exit (0);
 }
 
@@ -26,10 +26,17 @@ int	main(int argc, char *argv[])
 {
 	t_node	tool;
 
+	initialize_struct(&tool);
 	if (argc == 2)
 	{
-		initialize_struct(&tool);
-		if (check_input(&tool, argv[1]))
+		if (check_input_1(&tool, argv[1]))
+			do_events(&tool);
+		else
+			usage_exit();
+	}
+	else if (argc == 3)
+	{
+		if (check_input_2(&tool, argv))
 			do_events(&tool);
 		else
 			usage_exit();

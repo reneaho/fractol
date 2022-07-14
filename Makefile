@@ -19,11 +19,11 @@ LIBFTINCL = ./libft
 MLXLIB = /usr/local/lib
 MLXINCL = /usr/local/include
 FDFINCL = ./
-SRCS = main.c do_events.c keybinds_0.c keybinds_1.c \
-		draw_mandelbrot.c initialize_struct.c check_input.c \
-		image_pixel_put.c
+SRCS = main.c do_events.c keybinds_0.c keybinds_1.c draw_selector.c\
+		draw_mandelbrot.c draw_julia.c draw_burningship.c \
+		image_pixel_put.c initialize_struct.c check_input.c
 OBJS = $(SRCS:.c=.o)
-MLXLINK = -lmlx -framework OpenGL -framework Appkit
+MLXLINK = -lmlx -lXext -lX11
 
 all: $(NAME)
 

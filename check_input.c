@@ -37,32 +37,52 @@ static void	set_str_julia(char *str)
 	str[5] = '\0';
 }
 
-static void	set_str_third(char *str)
+static void	set_str_burningship(char *str1, char *str2)
 {
-	str[0] = 'T';
-	str[1] = 'h';
-	str[2] = 'i';
-	str[3] = 'r';
-	str[4] = 'd';
-	str[5] = '\0';
+	str1[0] = 'B';
+	str1[1] = 'u';
+	str1[2] = 'r';
+	str1[3] = 'n';
+	str1[4] = 'i';
+	str1[5] = 'n';
+	str1[6] = 'g';
+	str1[7] = '\0';
+	str2[0] = 'S';
+	str2[1] = 'h';
+	str2[2] = 'i';
+	str2[3] = 'p';
+	str2[4] = '\0';
 }
 
-int	check_input(t_node *tool, char *fractol)
+int	check_input_1(t_node *tool, char *fractol)
 {
 	char	mandelbrot[11];
 	char	julia[6];
-	char	third[6];
 
 	set_str_mandelbrot(mandelbrot);
 	set_str_julia(julia);
-	set_str_third(third);
 	if (ft_strequ(fractol, mandelbrot) == 1)
 		tool->fractol = 1;
 	else if (ft_strequ(fractol, julia) == 1)
 		tool->fractol = 2;
-	else if (ft_strequ(fractol, third) == 1)
-		tool->fractol = 3;
 	else
 		return (0);
 	return (1);
+}
+
+int	check_input_2(t_node *tool, char *fractol[])
+{
+	char	burning[8];
+	char	ship[5];
+
+	set_str_burningship(burning, ship);
+	if (ft_strequ(burning, fractol[1]) == 1)
+	{
+		if (ft_strequ(ship, fractol[2]) == 1)
+		{
+			tool->fractol = 3;
+			return (1);
+		}
+	}
+	return (0);
 }

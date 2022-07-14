@@ -26,14 +26,7 @@ static float	fractol_map(int value, int min1, int max1, int min2, int max2)
 	return (res);
 }
 
-/*
-float	calculate_camera(t_node *tool, float a)
-{
-
-}
-*/
-
-void	draw_mandelbrot(t_node *tool)
+void	draw_julia(t_node *tool)
 {
 	int		x;
 	int		y;
@@ -54,19 +47,15 @@ void	draw_mandelbrot(t_node *tool)
 		x = 0;
 		while (x < WINDOW_SIZE_WIDTH)
 		{
-			a = fractol_map(x, 0, WINDOW_SIZE_WIDTH, -1.5, 1.5);
-			b = fractol_map(y, 0, WINDOW_SIZE_HEIGHT, -1.5, 1.5);
-			//a = calculate_camera(tool, a);
-			//b = calculate_camera(tool, b);
-			a = a + tool->camera_x;
-			b = b + tool->camera_y;
-			ca = a;
-			cb = b;
+			a = fractol_map(x, 0, WINDOW_SIZE_WIDTH, -2, 2);
+			b = fractol_map(y, 0, WINDOW_SIZE_HEIGHT, -2, 2);
+			ca = -0.70176;
+			cb = -0.3842;
 			n = 0;
 			while (n < maxiterations)
 			{
 				aa = a * a - b * b;
-				bb = 2.0 * a * b;
+                bb = 2.0 * a * b;
 				a = aa + ca;
 				b = bb + cb;
 				if (ft_fabs(a + b) > 16.0)

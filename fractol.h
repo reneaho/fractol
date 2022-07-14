@@ -41,6 +41,8 @@
 # define LINUX_DOWN 65364
 # define LINUX_ENTER 65293
 # define LINUX_ESC 65307
+# define LINUX_MOUSE_WHEEL_UP 4
+# define LINUX_MOUSE_WHEEL_DOWN 5
 # define MAC_W 13
 # define MAC_A 0
 # define MAC_S 1
@@ -59,6 +61,8 @@
 # define MAC_DOWN 125
 # define MAC_ENTER 036
 # define MAC_ESC 53
+# define MAC_MOUSE_WHEEL_UP 1000
+# define MAC_MOUSE_WHEEL_DOWN 1000
 
 # include "libft/libft.h"
 # include "mlx.h"
@@ -77,15 +81,24 @@ typedef struct s_node
 	int		endian;
 	int		last_key;
 	int		fractol;
+	int		mouse_x;
+	int		mouse_y;
+	float	scale;
+	float	camera_x;
+	float	camera_y;
 }		t_node;
 
-int		check_input(t_node *tool, char *fractol);
+int		check_input_1(t_node *tool, char *fractol);
+int		check_input_2(t_node *tool, char *fractol[]);
 void	initialize_struct(t_node *tool);
 void	do_events(t_node *tool);
 void	draw_line(t_node *tool, int color);
 void	image_pixel_put(t_node *tool, int x, int y, int color);
 int		check_if_inside(int x, int y);
+void    draw_selector(t_node *tool);
 void	draw_mandelbrot(t_node *tool);
+void	draw_julia(t_node *tool);
+void	draw_burningship(t_node *tool);
 void	erase_map(t_node *tool);
 void	keybinds_0(t_node *tool);
 void	keybinds_1(t_node *tool);

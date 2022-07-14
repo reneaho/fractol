@@ -21,7 +21,13 @@ void	initialize_struct(t_node *tool)
 	tool->bits_per_pixel = 0;
 	tool->size_line = 0;
 	tool->endian = 0;
+	tool->last_key = 0;
 	tool->fractol = 0;
+	tool->mouse_x = 0;
+	tool->mouse_y = 0;
+	tool->scale = 0;
+	tool->camera_x = 0;
+	tool->camera_y = 0;
 	//reinitialize_struct(tool);
 }
 
