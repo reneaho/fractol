@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keybinds_0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:56:09 by raho              #+#    #+#             */
-/*   Updated: 2022/06/17 16:56:12 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/18 14:47:37 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,50 +45,51 @@ void	print_values(t_node *tool)
 
 void	keybinds_0(t_node *tool)
 {
-	if (tool->last_key == LINUX_A || \
-			tool->last_key == MAC_A)
+	if (tool->last_key == LINUX_LEFT || \
+			tool->last_key == MAC_LEFT)
 	{
-		tool->camera_x = tool->camera_x - 0.1;
+		tool->camera_x = tool->camera_x - 0.01;
 		erase_map(tool);
-		draw_mandelbrot(tool);
+		draw_selector(tool);
 	}
-	if (tool->last_key == LINUX_D || \
-			tool->last_key == MAC_D)
+	if (tool->last_key == LINUX_RIGHT || \
+			tool->last_key == MAC_RIGHT)
 	{
-		tool->camera_x = tool->camera_x + 0.1;
+		tool->camera_x = tool->camera_x + 0.01;
 		erase_map(tool);
-		draw_mandelbrot(tool);
+		draw_selector(tool);
 	}
-	if (tool->last_key == LINUX_W || \
-			tool->last_key == MAC_W)
+	if (tool->last_key == LINUX_UP || \
+			tool->last_key == MAC_UP)
 	{
-		tool->camera_y = tool->camera_y - 0.1;
+		tool->camera_y = tool->camera_y - 0.01;
 		erase_map(tool);
-		draw_mandelbrot(tool);
+		draw_selector(tool);
 	}
-	if (tool->last_key == LINUX_S || \
-			tool->last_key == MAC_S)
+	if (tool->last_key == LINUX_DOWN || \
+			tool->last_key == MAC_DOWN)
 	{
-		tool->camera_y = tool->camera_y + 0.1;
+		tool->camera_y = tool->camera_y + 0.01;
 		erase_map(tool);
-		draw_mandelbrot(tool);
+		draw_selector(tool);
 	}
 	if (tool->last_key == LINUX_MOUSE_WHEEL_UP || \
 			tool->last_key == MAC_MOUSE_WHEEL_UP)
 	{
-		tool->scale = tool->scale - 0.1;
+		tool->scale = tool->scale - 0.01;
 		erase_map(tool);
-		draw_mandelbrot(tool);
+		draw_selector(tool);
 	}
 	if (tool->last_key == LINUX_MOUSE_WHEEL_DOWN || \
 			tool->last_key == MAC_MOUSE_WHEEL_DOWN)
 	{
-		tool->scale = tool->scale + 0.1;
+		tool->scale = tool->scale + 0.01;
 		erase_map(tool);
-		draw_mandelbrot(tool);
+		draw_selector(tool);
 	}
 	if (tool->last_key == LINUX_ESC || tool->last_key == MAC_ESC)
 		close_program(tool);
 	keybinds_1(tool);
 	print_values(tool);
+	ft_putchar('\n');
 }

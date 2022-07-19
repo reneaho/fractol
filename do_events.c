@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_events.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:02:28 by raho              #+#    #+#             */
-/*   Updated: 2022/06/17 17:03:41 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/18 14:14:22 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int	mouse_click(int mouse_button, int x, int y, void *param)
 	return (0);
 }
 
+/*
 static int	mouse_hover(t_node *tool)
 {
 	int	x;
@@ -54,8 +55,7 @@ static int	mouse_hover(t_node *tool)
 
 	x = tool->mouse_x;
 	y = tool->mouse_y;
-	mlx_mouse_get_pos(tool->mlx_ptr, tool->win_ptr, \
-						&tool->mouse_x, &tool->mouse_y);
+	mlx_mouse_get_pos(tool->mlx_ptr, tool->win_ptr, &tool->mouse_x, &tool->mouse_y);
 	if ((x != tool->mouse_x || y != tool->mouse_y) && \
 			(tool->mouse_x >= 0 && tool->mouse_x <= WINDOW_SIZE_WIDTH && \
 			tool->mouse_y >= 0 && tool->mouse_y <= WINDOW_SIZE_HEIGHT))
@@ -69,6 +69,7 @@ static int	mouse_hover(t_node *tool)
 	}
 	return (0);
 }
+*/
 
 void	do_events(t_node *tool)
 {
@@ -83,6 +84,6 @@ void	do_events(t_node *tool)
 	print_keybinds();
 	mlx_key_hook(tool->win_ptr, key_press, (void *)tool);
 	mlx_mouse_hook(tool->win_ptr, mouse_click, (void *)tool);
-	mlx_loop_hook(tool->mlx_ptr, mouse_hover, (void *)tool);
+	//mlx_loop_hook(tool->mlx_ptr, mouse_hover, (void *)tool);
 	mlx_loop(tool->mlx_ptr);
 }

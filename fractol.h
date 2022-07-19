@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
-/*   Updated: 2022/06/17 16:57:50 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/18 14:38:36 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define MAC_UP 126
 # define MAC_RIGHT 124
 # define MAC_DOWN 125
-# define MAC_ENTER 036
+# define MAC_ENTER 36
 # define MAC_ESC 53
 # define MAC_MOUSE_WHEEL_UP 1000
 # define MAC_MOUSE_WHEEL_DOWN 1000
@@ -91,6 +91,7 @@ typedef struct s_node
 int		check_input_1(t_node *tool, char *fractol);
 int		check_input_2(t_node *tool, char *fractol[]);
 void	initialize_struct(t_node *tool);
+void	reinitialize_struct(t_node *tool);
 void	do_events(t_node *tool);
 void	draw_line(t_node *tool, int color);
 void	image_pixel_put(t_node *tool, int x, int y, int color);

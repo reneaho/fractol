@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_structs.c                               :+:      :+:    :+:   */
+/*   initialize_struct.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raho <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:26:51 by raho              #+#    #+#             */
-/*   Updated: 2022/05/26 18:31:05 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/18 14:29:13 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ void	initialize_struct(t_node *tool)
 	//reinitialize_struct(tool);
 }
 
-/*
 void	reinitialize_struct(t_node *tool)
 {
-	
+	tool->last_key = 0;
+	tool->mouse_x = 0;
+	tool->mouse_y = 0;
+	tool->scale = 0;
+	tool->camera_x = 0;
+	tool->camera_y = 0;
 }
-*/

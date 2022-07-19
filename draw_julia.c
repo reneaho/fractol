@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_mandelbrot.c                                  :+:      :+:    :+:   */
+/*   draw_julia.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:59 by raho              #+#    #+#             */
-/*   Updated: 2022/06/17 17:03:11 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/18 14:24:18 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static float	fractol_map(int value, int min1, int max1, int min2, int max2)
+static float	fractol_map(int value, float min1, float max1, float min2, float max2)
 {
 	float	a;
 	float	b;
