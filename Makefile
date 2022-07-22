@@ -6,7 +6,7 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/07/21 17:03:18 by raho             ###   ########.fr        #
+#    Updated: 2022/07/22 19:00:08 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ MLXLINK = -lmlx -framework OpenGL -framework Appkit
 .PHONY: all clean fclean re
 
 all: $(NAME)
+	make -C libft
 
 $(NAME): $(LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIB) -I $(LIBFTINCL) -I $(MLXINCL) \

@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:59 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 14:56:41 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/22 18:53:46 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ float	calculate_camera(t_node *tool, float a)
 
 }
 */
-
+ 
 void	draw_mandelbrot(t_node *tool)
 {
 	int		x;
@@ -47,21 +47,21 @@ void	draw_mandelbrot(t_node *tool)
 	int		maxiterations;
 	float	color;
 
-	maxiterations = 500;
+	maxiterations = 100;
 	y = 0;
 	while (y < WINDOW_SIZE_HEIGHT)
 	{
 		x = 0;
 		while (x < WINDOW_SIZE_WIDTH)
 		{
-			a = fractol_map(x, 0, WINDOW_SIZE_WIDTH, -1.5 + tool->scale, 1.5 - tool->scale);
+			a = fractol_map(x, 0, WINDOW_SIZE_WIDTH, -1.5 + tool->scale, 1.5 - tool->scale); // KERTAA 0.9 ET ZOOMI KAUAS 1.1 ZOOMI SISAAN
 			b = fractol_map(y, 0, WINDOW_SIZE_HEIGHT, -1.5 + tool->scale, 1.5 - tool->scale);
 			//a = calculate_camera(tool, a);
 			//b = calculate_camera(tool, b);
-			a = a + tool->camera_x;
-			b = b + tool->camera_y;
-			ca = a;
-			cb = b;
+			ca = a + tool->camera_x;
+			cb = b + tool->camera_y;
+			a = 0;
+			b = 0;
 			n = 0;
 			while (n < maxiterations)
 			{
@@ -69,7 +69,7 @@ void	draw_mandelbrot(t_node *tool)
 				bb = 2.0 * a * b;
 				a = aa + ca;
 				b = bb + cb;
-				if (ft_fabs(a + b) > 16.0)
+				if (ft_fabs(a + b) > 4.0)
 					break ;
 				n++;
 			}
@@ -84,7 +84,7 @@ void	draw_mandelbrot(t_node *tool)
 			image_pixel_put(tool, x, y, color);
 			x++;
 		}
-		y++;
+		y++;	//lisaksi y+pos increment jos mappaa/skaalaa ulkopuolella sama x eli y_pos += y_scale. laskut tehdaan y_pos x_pos
 	}
 	mlx_put_image_to_window(tool->mlx_ptr, tool->win_ptr, \
 											tool->img_ptr, 0, 0);

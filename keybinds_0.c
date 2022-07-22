@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:56:09 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 14:47:37 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/22 18:28:50 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,42 +48,42 @@ void	keybinds_0(t_node *tool)
 	if (tool->last_key == LINUX_LEFT || \
 			tool->last_key == MAC_LEFT)
 	{
-		tool->camera_x = tool->camera_x - 0.01;
+		tool->camera_x = tool->camera_x - 0.1;
 		erase_map(tool);
 		draw_selector(tool);
 	}
 	if (tool->last_key == LINUX_RIGHT || \
 			tool->last_key == MAC_RIGHT)
 	{
-		tool->camera_x = tool->camera_x + 0.01;
+		tool->camera_x = tool->camera_x + 0.1;
 		erase_map(tool);
 		draw_selector(tool);
 	}
 	if (tool->last_key == LINUX_UP || \
 			tool->last_key == MAC_UP)
 	{
-		tool->camera_y = tool->camera_y - 0.01;
+		tool->camera_y = tool->camera_y - 0.1;
 		erase_map(tool);
 		draw_selector(tool);
 	}
 	if (tool->last_key == LINUX_DOWN || \
 			tool->last_key == MAC_DOWN)
 	{
-		tool->camera_y = tool->camera_y + 0.01;
+		tool->camera_y = tool->camera_y + 0.1;
 		erase_map(tool);
 		draw_selector(tool);
 	}
 	if (tool->last_key == LINUX_MOUSE_WHEEL_UP || \
 			tool->last_key == MAC_MOUSE_WHEEL_UP)
 	{
-		tool->scale = tool->scale - 0.01;
+		tool->scale = tool->scale - 0.1;
 		erase_map(tool);
 		draw_selector(tool);
 	}
 	if (tool->last_key == LINUX_MOUSE_WHEEL_DOWN || \
 			tool->last_key == MAC_MOUSE_WHEEL_DOWN)
 	{
-		tool->scale = tool->scale + 0.01;
+		tool->scale = tool->scale + 0.1;
 		erase_map(tool);
 		draw_selector(tool);
 	}
