@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:26:51 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 14:29:13 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/28 20:58:04 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	initialize_struct(t_node *tool)
 	tool->fractol = 0;
 	tool->mouse_x = 0;
 	tool->mouse_y = 0;
-	tool->scale = 0;
+	tool->lengthy = WINDOW_SIZE_HEIGHT;
+	tool->lengthx = WINDOW_SIZE_WIDTH;
 	tool->camera_x = 0;
 	tool->camera_y = 0;
 	//reinitialize_struct(tool);
@@ -36,7 +37,8 @@ void	reinitialize_struct(t_node *tool)
 	tool->last_key = 0;
 	tool->mouse_x = 0;
 	tool->mouse_y = 0;
-	tool->scale = 0;
+	tool->lengthy = 0;
+	tool->lengthx = 0;
 	tool->camera_x = 0;
 	tool->camera_y = 0;
 }

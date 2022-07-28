@@ -6,21 +6,21 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:59 by raho              #+#    #+#             */
-/*   Updated: 2022/07/22 18:53:46 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/28 20:57:39 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static float	fractol_map(int value, float min1, float max1, float min2, float max2)
+static double	fractol_map(int value, int min1, int max1, double min2, double max2)
 {
-	float	a;
-	float	b;
-	float	c;
-	float	res;
+	double	a;
+	double	b;
+	double	c;
+	double	res;
 
-	a = value - min1;
-	b = max1 - min1;
+	a = (double)value - (double)min1;
+	b = (double)max1 - (double)min1;
 	c = max2 - min2;
 	res = a / b * c + min2;
 	return (res);
@@ -32,59 +32,69 @@ float	calculate_camera(t_node *tool, float a)
 
 }
 */
- 
+/*
+static int	rgb_to_int(double r, double g, double b)
+{
+	int	color;
+
+	color = 0;
+	color |= (int)(b * 255);
+	color |= (int)(g * 255) << 8;
+	color |= (int)(r * 255) << 16;
+	return (color);
+}
+*/
+
 void	draw_mandelbrot(t_node *tool)
 {
-	int		x;
-	int		y;
-	float	a;
-	float	aa;
-	float	b;
-	float	bb;
-	float	ca;
-	float	cb;
-	int		n;
+	int		centerx;
+	int		centery;
+	int		pixelx;
+	int		pixely;
+	double	x;
+	double	y;
+	double	x0;
+	double	y0;
+	double	xtemp;
+	int		iterations;
 	int		maxiterations;
-	float	color;
+	int		color;
+	double	breaktemp;
 
+	centerx = WINDOW_SIZE_WIDTH / 2;
+	centery = WINDOW_SIZE_HEIGHT / 2;
 	maxiterations = 100;
-	y = 0;
-	while (y < WINDOW_SIZE_HEIGHT)
+	pixely = 0;
+	while (pixely < WINDOW_SIZE_HEIGHT)
 	{
-		x = 0;
-		while (x < WINDOW_SIZE_WIDTH)
+		pixelx = 0;
+		while (pixelx < WINDOW_SIZE_WIDTH)
 		{
-			a = fractol_map(x, 0, WINDOW_SIZE_WIDTH, -1.5 + tool->scale, 1.5 - tool->scale); // KERTAA 0.9 ET ZOOMI KAUAS 1.1 ZOOMI SISAAN
-			b = fractol_map(y, 0, WINDOW_SIZE_HEIGHT, -1.5 + tool->scale, 1.5 - tool->scale);
-			//a = calculate_camera(tool, a);
-			//b = calculate_camera(tool, b);
-			ca = a + tool->camera_x;
-			cb = b + tool->camera_y;
-			a = 0;
-			b = 0;
-			n = 0;
-			while (n < maxiterations)
+			x0 = (centerx + ((pixely / WINDOW_SIZE_WIDTH) - 0.5)) * tool->lengthx;
+			y0 = (centery + ((pixelx / WINDOW_SIZE_WIDTH) - 0.5)) * tool->lengthy;
+			x = 0.0 + tool->camera_x;
+			y = 0.0 + tool->camera_y;
+			iterations = 0;
+			while (iterations < maxiterations)
 			{
-				aa = a * a - b * b;
-				bb = 2.0 * a * b;
-				a = aa + ca;
-				b = bb + cb;
-				if (ft_fabs(a + b) > 4.0)
-					break ;
-				n++;
+				xtemp = ((x * x) - (y * y)) + x0;
+				y = ((2 * x) * y) + y0;
+				x = xtemp;
+				breaktemp = (x * x) + (y * y);
+				iterations++;
+				if (ft_fabs(breaktemp) > 4)
+					break;
+				
 			}
-			if (n == maxiterations)
-			{
+			if (iterations == maxiterations)
 				color = 0;
-			}
 			else
-			{
-				color = fractol_map(n, 0, maxiterations, 0, 255255255);
-			}
-			image_pixel_put(tool, x, y, color);
-			x++;
+				color = fractol_map(iterations, 0, maxiterations, 0, 255255255);
+			//color = plot(iteration);
+			image_pixel_put(tool, pixelx, pixely, color);
+			pixelx++;
 		}
-		y++;	//lisaksi y+pos increment jos mappaa/skaalaa ulkopuolella sama x eli y_pos += y_scale. laskut tehdaan y_pos x_pos
+		pixely++;	//lisaksi y+pos increment jos mappaa/skaalaa ulkopuolella sama x eli y_pos += y_scale. laskut tehdaan y_pos x_pos
 	}
 	mlx_put_image_to_window(tool->mlx_ptr, tool->win_ptr, \
 											tool->img_ptr, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 14:38:36 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/28 20:55:25 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@
 # define MAC_DOWN 125
 # define MAC_ENTER 36
 # define MAC_ESC 53
-# define MAC_MOUSE_WHEEL_UP 1000
-# define MAC_MOUSE_WHEEL_DOWN 1000
+# define MAC_MOUSE_WHEEL_UP 4
+# define MAC_MOUSE_WHEEL_DOWN 5
 
 # include "libft/libft.h"
 # include "mlx.h"
@@ -83,9 +83,10 @@ typedef struct s_node
 	int		fractol;
 	int		mouse_x;
 	int		mouse_y;
-	float	scale;
-	float	camera_x;
-	float	camera_y;
+	double	lengthy;
+	double	lengthx;
+	double	camera_x;
+	double	camera_y;
 }		t_node;
 
 int		check_input_1(t_node *tool, char *fractol);
