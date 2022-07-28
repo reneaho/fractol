@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 14:38:36 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/28 22:45:55 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 # define FRACTOL_H
 # define WINDOW_SIZE_WIDTH 1000
 # define WINDOW_SIZE_HEIGHT 1000
-# define MAP_START_TILE_WIDTH 64
-# define MAP_START_TILE_HEIGHT 64
-# define MAP_START_TILE_DEPTH 10
-# define MAP_START_POSITION_WIDTH 0
-# define MAP_START_POSITION_HEIGHT 0
-# define COLOR_NEUTRAL 0xFFFFFF
-# define COLOR_POSITIVE 0xD154E4
-# define COLOR_NEGATIVE 0xF51911
-# define COLOR_TRANSITION 0xF9D460
+# define MAX_ITERATIONS 200
 # define LINUX_W 119
 # define LINUX_A 97
 # define LINUX_S 115
@@ -81,6 +73,10 @@ typedef struct s_node
 	int		endian;
 	int		last_key;
 	int		fractol;
+	int		iterationcounts[WINDOW_SIZE_HEIGHT][WINDOW_SIZE_WIDTH];
+	int		numiterationsperpixel[MAX_ITERATIONS];
+	float	total;
+	int		hue[WINDOW_SIZE_HEIGHT][WINDOW_SIZE_WIDTH];
 	int		mouse_x;
 	int		mouse_y;
 	float	scale;

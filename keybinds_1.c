@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:54:46 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 14:25:34 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/28 23:22:30 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	keybinds_1(t_node *tool)
 	{
 		erase_map(tool);
 		reinitialize_struct(tool);
+		tool->camera_x = 0;
+		tool->camera_y = 0;
 		draw_selector(tool);
 	}
 }

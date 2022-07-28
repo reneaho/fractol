@@ -6,15 +6,15 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/07/22 19:00:08 by raho             ###   ########.fr        #
+#    Updated: 2022/07/28 23:19:04 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 LIB = libft/libft.a
-LIBFTINCL = ./libft
+LIBFTINCL = libft/
 MLXLIB = /usr/local/lib
 MLXINCL = /usr/local/include
 FDFINCL = ./
@@ -27,7 +27,6 @@ MLXLINK = -lmlx -framework OpenGL -framework Appkit
 .PHONY: all clean fclean re
 
 all: $(NAME)
-	make -C libft
 
 $(NAME): $(LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIB) -I $(LIBFTINCL) -I $(MLXINCL) \

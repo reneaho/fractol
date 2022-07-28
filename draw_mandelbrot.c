@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:59 by raho              #+#    #+#             */
-/*   Updated: 2022/07/22 18:53:46 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/28 22:58:48 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,38 +32,33 @@ float	calculate_camera(t_node *tool, float a)
 
 }
 */
- 
-void	draw_mandelbrot(t_node *tool)
+
+static void	calculate_iteration_counts(t_node *tool)
 {
-	int		x;
-	int		y;
+	int		pixelx;
+	int		pixely;
 	float	a;
 	float	aa;
 	float	b;
 	float	bb;
 	float	ca;
 	float	cb;
-	int		n;
-	int		maxiterations;
-	float	color;
+	int		iterations;
 
-	maxiterations = 100;
-	y = 0;
-	while (y < WINDOW_SIZE_HEIGHT)
+	pixely = 0;
+	while (pixely < WINDOW_SIZE_HEIGHT)
 	{
-		x = 0;
-		while (x < WINDOW_SIZE_WIDTH)
+		pixelx = 0;
+		while (pixelx < WINDOW_SIZE_WIDTH)
 		{
-			a = fractol_map(x, 0, WINDOW_SIZE_WIDTH, -1.5 + tool->scale, 1.5 - tool->scale); // KERTAA 0.9 ET ZOOMI KAUAS 1.1 ZOOMI SISAAN
-			b = fractol_map(y, 0, WINDOW_SIZE_HEIGHT, -1.5 + tool->scale, 1.5 - tool->scale);
-			//a = calculate_camera(tool, a);
-			//b = calculate_camera(tool, b);
+			a = fractol_map(pixelx, 0, WINDOW_SIZE_WIDTH, -2.00, 2.00);
+			b = fractol_map(pixely, 0, WINDOW_SIZE_HEIGHT, -2.00, 2.00);
 			ca = a + tool->camera_x;
 			cb = b + tool->camera_y;
 			a = 0;
 			b = 0;
-			n = 0;
-			while (n < maxiterations)
+			iterations = 0;
+			while (iterations < MAX_ITERATIONS)
 			{
 				aa = a * a - b * b;
 				bb = 2.0 * a * b;
@@ -71,20 +66,125 @@ void	draw_mandelbrot(t_node *tool)
 				b = bb + cb;
 				if (ft_fabs(a + b) > 4.0)
 					break ;
-				n++;
+				iterations++;
 			}
-			if (n == maxiterations)
+			tool->iterationcounts[pixely][pixelx] = iterations;
+			pixelx++;
+		}
+		pixely++;
+	}
+}
+
+static void	increment_index(t_node *tool)
+{
+	int	pixely;
+	int	pixelx;
+	int	index;
+
+	pixely = 0;
+	while (pixely < WINDOW_SIZE_HEIGHT)
+	{
+		pixelx = 0;
+		while (pixelx < WINDOW_SIZE_WIDTH)
+		{
+			index = tool->iterationcounts[pixely][pixelx];
+			tool->numiterationsperpixel[index]++;
+			pixelx++;
+		}
+		pixely++;
+	}
+}
+
+static void	add_up_save_total(t_node *tool)
+{
+	int	index;
+
+	index = 0;
+	while (index < MAX_ITERATIONS)
+	{
+		tool->total += tool->numiterationsperpixel[index];
+		index++;
+	}
+}
+
+static void	normalize(t_node *tool)
+{
+	int	pixely;
+	int	pixelx;
+	int	index;
+	int	iteration;
+
+	pixely = 0;
+	while (pixely < WINDOW_SIZE_HEIGHT)
+	{
+		pixelx = 0;
+		while (pixelx < WINDOW_SIZE_WIDTH)
+		{
+			iteration = tool->iterationcounts[pixely][pixelx];
+			index = 0;
+			while (index <= iteration)
+			{
+				tool->hue[pixely][pixelx] += (float)tool->numiterationsperpixel[index] / tool->total;
+				index++;
+			}
+			pixelx++;
+		}
+		pixely++;
+	}
+}
+
+void	draw_mandelbrot(t_node *tool)
+{
+	int		pixely;
+	int		pixelx;
+	float	color;
+	float	a;
+	float	aa;
+	float	b;
+	float	bb;
+	float	ca;
+	float	cb;
+	int		iterations;
+
+	calculate_iteration_counts(tool);	//histogram coloring first pass
+	increment_index(tool);				//histogram coloring second pass
+	add_up_save_total(tool);			//histogram coloring third pass
+	normalize(tool);					//histogram coloring fourth pass	
+	pixely = 0;
+	while (pixely < WINDOW_SIZE_HEIGHT)
+	{
+		pixelx = 0;
+		while (pixelx < WINDOW_SIZE_WIDTH)
+		{
+			a = fractol_map(pixelx, 0, WINDOW_SIZE_WIDTH, -2.00, 2.00);
+			b = fractol_map(pixely, 0, WINDOW_SIZE_HEIGHT, -2.00, 2.00);
+			ca = a + tool->camera_x;
+			cb = b + tool->camera_y;
+			a = 0;
+			b = 0;
+			iterations = 0;
+			while (iterations < MAX_ITERATIONS)
+			{
+				aa = a * a - b * b;
+				bb = 2.0 * a * b;
+				a = aa + ca;
+				b = bb + cb;
+				if (ft_fabs(a + b) > 4.0)
+					break ;
+				iterations++;
+			}
+			if (iterations == MAX_ITERATIONS)
 			{
 				color = 0;
 			}
 			else
 			{
-				color = fractol_map(n, 0, maxiterations, 0, 255255255);
+				color = (int)tool->hue[pixely][pixelx];
 			}
-			image_pixel_put(tool, x, y, color);
-			x++;
+			image_pixel_put(tool, pixelx, pixely, color);
+			pixelx++;
 		}
-		y++;	//lisaksi y+pos increment jos mappaa/skaalaa ulkopuolella sama x eli y_pos += y_scale. laskut tehdaan y_pos x_pos
+		pixely++;	//lisaksi y+pos increment jos mappaa/skaalaa ulkopuolella sama x eli y_pos += y_scale. laskut tehdaan y_pos x_pos
 	}
 	mlx_put_image_to_window(tool->mlx_ptr, tool->win_ptr, \
 											tool->img_ptr, 0, 0);

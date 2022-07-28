@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:56:09 by raho              #+#    #+#             */
-/*   Updated: 2022/07/22 18:28:50 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/28 23:23:05 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	keybinds_0(t_node *tool)
 			tool->last_key == MAC_LEFT)
 	{
 		tool->camera_x = tool->camera_x - 0.1;
+		reinitialize_struct(tool);
 		erase_map(tool);
 		draw_selector(tool);
 	}
@@ -56,6 +57,7 @@ void	keybinds_0(t_node *tool)
 			tool->last_key == MAC_RIGHT)
 	{
 		tool->camera_x = tool->camera_x + 0.1;
+		reinitialize_struct(tool);
 		erase_map(tool);
 		draw_selector(tool);
 	}
@@ -63,6 +65,7 @@ void	keybinds_0(t_node *tool)
 			tool->last_key == MAC_UP)
 	{
 		tool->camera_y = tool->camera_y - 0.1;
+		reinitialize_struct(tool);
 		erase_map(tool);
 		draw_selector(tool);
 	}
@@ -70,6 +73,7 @@ void	keybinds_0(t_node *tool)
 			tool->last_key == MAC_DOWN)
 	{
 		tool->camera_y = tool->camera_y + 0.1;
+		reinitialize_struct(tool);
 		erase_map(tool);
 		draw_selector(tool);
 	}
@@ -77,6 +81,7 @@ void	keybinds_0(t_node *tool)
 			tool->last_key == MAC_MOUSE_WHEEL_UP)
 	{
 		tool->scale = tool->scale - 0.1;
+		reinitialize_struct(tool);
 		erase_map(tool);
 		draw_selector(tool);
 	}
@@ -84,6 +89,7 @@ void	keybinds_0(t_node *tool)
 			tool->last_key == MAC_MOUSE_WHEEL_DOWN)
 	{
 		tool->scale = tool->scale + 0.1;
+		reinitialize_struct(tool);
 		erase_map(tool);
 		draw_selector(tool);
 	}
