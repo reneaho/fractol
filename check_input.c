@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:05:05 by raho              #+#    #+#             */
-/*   Updated: 2022/06/17 17:05:06 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/07 21:47:34 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	set_str_burningship(char *str1, char *str2)
 	str2[4] = '\0';
 }
 
-int	check_input_1(t_node *tool, char *fractol)
+int	check_argc_2(char *fractol, t_node *tool)
 {
 	char	mandelbrot[11];
 	char	julia[6];
@@ -66,11 +66,11 @@ int	check_input_1(t_node *tool, char *fractol)
 	else if (ft_strequ(fractol, julia) == 1)
 		tool->fractol = 2;
 	else
-		return (0);
-	return (1);
+		return (-1);
+	return (0);
 }
 
-int	check_input_2(t_node *tool, char *fractol[])
+int	check_argc_3(char *fractol[], t_node *tool)
 {
 	char	burning[8];
 	char	ship[5];
@@ -81,8 +81,8 @@ int	check_input_2(t_node *tool, char *fractol[])
 		if (ft_strequ(ship, fractol[2]) == 1)
 		{
 			tool->fractol = 3;
-			return (1);
+			return (0);
 		}
 	}
-	return (0);
+	return (-1);
 }

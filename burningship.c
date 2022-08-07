@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_struct.c                                :+:      :+:    :+:   */
+/*   burningship.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 14:26:51 by raho              #+#    #+#             */
-/*   Updated: 2022/08/07 21:53:44 by raho             ###   ########.fr       */
+/*   Created: 2022/06/17 16:57:59 by raho              #+#    #+#             */
+/*   Updated: 2022/08/07 22:10:08 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	initialize_struct(t_node *tool)
+void	burningship(int x, int y, double a, t_node *tool)
 {
-	tool->mlx_ptr = NULL;
-	tool->win_ptr = NULL;
-	tool->img_ptr = NULL;
-	tool->img_addr = NULL;
-	tool->bits_per_pixel = 0;
-	tool->size_line = 0;
-	tool->endian = 0;
-	tool->fractol = 0;
-	reinitialize_struct(tool);
-}
+	double	aa;
+	double	b;
+	double	bb;
+	double	ca;
+	double	cb;
 
-void	reinitialize_struct(t_node *tool)
-{
 	tool->iterations = 0;
-	tool->camera_x = 0;
-	tool->camera_y = 0;
-	tool->mouse_x = 0;
-	tool->mouse_y = 0;
-	tool->scale = 1;
+	a = map_x(x);
+	b = map_y(y);
+	a = a * tool->scale + tool->camera_x;
+	b = b * tool->scale + tool->camera_y;
+	ca = a;
+	cb = b;
+	while (tool->iterations < MAX_ITERATIONS)
+	{
+		aa = a * a - b * b;
+		bb = 2 * ft_fabs(a * b);
+		a = aa + ca;
+		b = bb + cb;
+		if (ft_fabs((a * a) + (b * b)) > 4)
+			break ;
+		tool->iterations++;
+	}
 }
