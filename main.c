@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:25:55 by raho              #+#    #+#             */
-/*   Updated: 2022/08/07 21:42:57 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/07 22:19:22 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	usage_exit(void)
 {
-	ft_putendl("usage: ./fractol <fractol>");
-	ft_putendl("fractols:");
-	ft_putendl("Mandelbrot");
-	ft_putendl("Julia");
-	ft_putendl("Burning Ship");
-	exit (0);
+	ft_putendl_fd("usage: ./fractol <fractol>", 2);
+	ft_putendl_fd("fractols:", 2);
+	ft_putendl_fd("Mandelbrot", 2);
+	ft_putendl_fd("Julia", 2);
+	ft_putendl_fd("Burning Ship", 2);
+	exit (1);
 }
 
 static int	check_input(int argc, char *argv[], t_node *tool)

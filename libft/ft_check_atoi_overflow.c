@@ -6,13 +6,13 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 19:27:09 by raho              #+#    #+#             */
-/*   Updated: 2022/07/22 19:27:22 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/07 22:18:05 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_atoi_overflow(char *str)
+int	ft_check_atoi_overflow(char *str)
 {
 	int		i;
 	long	res;

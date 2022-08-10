@@ -6,13 +6,13 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:44:02 by raho              #+#    #+#             */
-/*   Updated: 2022/08/07 22:13:01 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/10 23:23:54 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	map_x(int x)
+double	map_real(int x)
 {
 	double	slope;
 	double	output;
@@ -22,7 +22,7 @@ double	map_x(int x)
 	return (output);
 }
 
-double	map_y(int y)
+double	map_imaginary(int y)
 {
 	double	slope;
 	double	output;

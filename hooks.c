@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:02:28 by raho              #+#    #+#             */
-/*   Updated: 2022/08/07 22:09:52 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/10 23:25:27 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int	mouse_hover(int x, int y, void *param)
 	tool = (t_node *)param;
 	if ((x >= 0 && x < WINDOW_SIZE_WIDTH) && (y >= 0 && y < WINDOW_SIZE_HEIGHT))
 	{
-		tool->mouse_x = map_x(x);
-		tool->mouse_y = map_y(y);
+		tool->mouse_x = map_real(x);
+		tool->mouse_y = map_imaginary(y);
 		erase_map(tool);
 		draw_set(tool);
 	}

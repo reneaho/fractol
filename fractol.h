@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
-/*   Updated: 2022/08/07 22:09:31 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/11 00:30:46 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ int		check_argc_2(char *fractol, t_node *tool);
 int		check_argc_3(char *fractol[], t_node *tool);
 void	image_pixel_put(int color, int x, int y, t_node *tool);
 void	draw_set(t_node *tool);
-void	mandelbrot(int x, int y, double a, t_node *tool);
-void	julia(int x, int y, double a, t_node *tool);
-void	burningship(int x, int y, double a, t_node *tool);
+int		mandelbrot(double cr, double ci);
+int		julia(double cr, double ci, t_node *tool);
+int		burningship(double cr, double ci);
 int		key_press(int key, void *param);
 int		mouse_click(int mouse_button, int x, int y, void *param);
 int		mouse_hover(int x, int y, void *param);
-double	map_x(int x);
-double	map_y(int y);
+double	map_real(int x);
+double	map_imaginary(int y);
 double	map_color(int iterations);
 
 #endif

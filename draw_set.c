@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_functions.c                                    :+:      :+:    :+:   */
+/*   draw_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:20:23 by raho              #+#    #+#             */
-/*   Updated: 2022/08/07 22:06:29 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/11 00:27:52 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,23 @@ static int	set_color(int iterations)
 	return (color);
 }
 
-static void	select_set(int x, int y, t_node *tool)
+static int	select_fractal(double cr, double ci, t_node *tool)
 {
 	if (tool->fractol == 1)
-		mandelbrot(x, y, 0, tool);
+		return (mandelbrot(cr, ci));
 	else if (tool->fractol == 2)
-		julia(x, y, 0, tool);
+		return (julia(cr, ci, tool));
 	else
-		burningship(x, y, 0, tool);
+		return (burningship(cr, ci));
 }
 
 void	draw_set(t_node *tool)
 {
 	int		x;
 	int		y;
-	int		color;
+	int		iterations;
+	double	cr;
+	double	ci;
 
 	y = 0;
 	while (y < WINDOW_SIZE_HEIGHT)
@@ -79,9 +81,12 @@ void	draw_set(t_node *tool)
 		x = 0;
 		while (x < WINDOW_SIZE_WIDTH)
 		{
-			select_set(x, y, tool);
-			color = set_color(tool->iterations);
-			image_pixel_put(color, x, y, tool);
+			cr = map_real(x);
+			ci = map_imaginary(y);
+			cr = cr * tool->scale + tool->camera_x;
+			ci = ci * tool->scale + tool->camera_y;
+			iterations = select_fractal(cr, ci, tool);
+			image_pixel_put(set_color(iterations), x, y, tool);
 			x++;
 		}
 		y++;
