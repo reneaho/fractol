@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   pixel_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 19:58:31 by raho              #+#    #+#             */
-/*   Updated: 2021/11/24 21:23:39 by raho             ###   ########.fr       */
+/*   Created: 2022/08/11 21:54:29 by raho              #+#    #+#             */
+/*   Updated: 2022/08/11 21:55:45 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fractol.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	erase_map(t_node *tool)
 {
-	int	index;
+	int	x;
+	int	y;
 
-	index = 0;
-	if (s)
+	y = 0;
+	while (y < WINDOW_SIZE_HEIGHT)
 	{
-		while (s[index] != '\0')
+		x = 0;
+		while (x < WINDOW_SIZE_WIDTH)
 		{
-			(*f)(index, &s[index]);
-			index++;
+			image_pixel_put(0x000000, x, y, tool);
+			x++;
 		}
+		y++;
 	}
+}
+
+void	image_pixel_put(int color, int x, int y, t_node *tool)
+{
+	char	*pixel;
+
+	pixel = tool->img_addr + ((y * tool->size_line) + (x * \
+								(tool->bits_per_pixel / 8)));
+	*(int *)pixel = color;
 }
