@@ -6,35 +6,29 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:02:28 by raho              #+#    #+#             */
-/*   Updated: 2022/08/10 23:25:27 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/11 22:06:12 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	close_program(t_node *tool)
+int	close_program(t_node *tool)
 {
 	mlx_destroy_image(tool->mlx_ptr, tool->img_ptr);
 	mlx_destroy_window(tool->mlx_ptr, tool->win_ptr);
 	exit (0);
 }
 
-static void	erase_map(t_node *tool)
+void	key_press_helper(int key, t_node *tool)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < WINDOW_SIZE_HEIGHT)
-	{
-		x = 0;
-		while (x < WINDOW_SIZE_WIDTH)
-		{
-			image_pixel_put(0x000000, x, y, tool);
-			x++;
-		}
-		y++;
-	}
+	if (key == LINUX_A || key == MAC_A)
+		tool->camera_x = tool->camera_x - 0.00055;
+	else if (key == LINUX_D || key == MAC_D)
+		tool->camera_x = tool->camera_x + 0.00055;
+	else if (key == LINUX_W || key == MAC_W)
+		tool->camera_y = tool->camera_y - 0.00055;
+	else if (key == LINUX_S || key == MAC_S)
+		tool->camera_y = tool->camera_y + 0.00055;
 }
 
 int	key_press(int key, void *param)
@@ -43,17 +37,22 @@ int	key_press(int key, void *param)
 
 	tool = (t_node *)param;
 	if (key == LINUX_LEFT || key == MAC_LEFT)
-		tool->camera_x = tool->camera_x - 0.1;
+		tool->camera_x = tool->camera_x - 0.05;
 	else if (key == LINUX_RIGHT || key == MAC_RIGHT)
-		tool->camera_x = tool->camera_x + 0.1;
+		tool->camera_x = tool->camera_x + 0.05;
 	else if (key == LINUX_UP || key == MAC_UP)
-		tool->camera_y = tool->camera_y - 0.1;
+		tool->camera_y = tool->camera_y - 0.05;
 	else if (key == LINUX_DOWN || key == MAC_DOWN)
-		tool->camera_y = tool->camera_y + 0.1;
+		tool->camera_y = tool->camera_y + 0.05;
 	else if (key == LINUX_ENTER || key == MAC_ENTER)
 		reinitialize_struct(tool);
 	else if (key == LINUX_ESC || key == MAC_ESC)
+	{
 		close_program(tool);
+		exit (0);
+	}
+	else
+		key_press_helper(key, tool);
 	erase_map(tool);
 	draw_set(tool);
 	return (0);
@@ -82,10 +81,13 @@ int	mouse_hover(int x, int y, void *param)
 	tool = (t_node *)param;
 	if ((x >= 0 && x < WINDOW_SIZE_WIDTH) && (y >= 0 && y < WINDOW_SIZE_HEIGHT))
 	{
-		tool->mouse_x = map_real(x);
-		tool->mouse_y = map_imaginary(y);
-		erase_map(tool);
-		draw_set(tool);
+		tool->mouse_x = map_real(x, -2, 2);
+		tool->mouse_y = map_imaginary(y, -2, 2);
+		if (tool->fractal == 2)
+		{
+			erase_map(tool);
+			draw_set(tool);
+		}
 	}
 	return (0);
 }

@@ -6,38 +6,50 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:44:02 by raho              #+#    #+#             */
-/*   Updated: 2022/08/10 23:23:54 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/11 17:23:18 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	map_real(int x)
+double	map_real(int x, double newmin, double newmax)
 {
-	double	slope;
-	double	output;
+	double	oldmin;
+	double	oldmax;
+	double	temp;
+	double	result;
 
-	slope = 1.0 * (2 - (-2)) / (WINDOW_SIZE_WIDTH - 0);
-	output = -2 + slope * (x - 0);
-	return (output);
+	oldmin = 0;
+	oldmax = WINDOW_SIZE_WIDTH;
+	temp = (newmax - newmin) * (x - oldmin);
+	result = (temp / (oldmax - oldmin)) + newmin;
+	return (result);
 }
 
-double	map_imaginary(int y)
+double	map_imaginary(int y, double newmin, double newmax)
 {
-	double	slope;
-	double	output;
+	double	oldmin;
+	double	oldmax;
+	double	temp;
+	double	result;
 
-	slope = 1.0 * (2 - (-2)) / (WINDOW_SIZE_HEIGHT - 0);
-	output = -2 + slope * (y - 0);
-	return (output);
+	oldmin = 0;
+	oldmax = WINDOW_SIZE_HEIGHT;
+	temp = (newmax - newmin) * (y - oldmin);
+	result = (temp / (oldmax - oldmin)) + newmin;
+	return (result);
 }
 
-double	map_color(int iterations)
+double	map_color(int iterations, double newmin, double newmax)
 {
-	double	slope;
-	double	output;
+	double	oldmin;
+	double	oldmax;
+	double	temp;
+	double	result;
 
-	slope = 1.0 * (255 - 1) / (MAX_ITERATIONS - 0);
-	output = 1 + slope * (iterations - 0);
-	return (output);
+	oldmin = 0;
+	oldmax = MAX_ITERATIONS;
+	temp = (newmax - newmin) * (iterations - oldmin);
+	result = (temp / (oldmax - oldmin)) + newmin;
+	return (result);
 }

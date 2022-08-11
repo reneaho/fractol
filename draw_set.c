@@ -6,20 +6,11 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:20:23 by raho              #+#    #+#             */
-/*   Updated: 2022/08/11 00:27:52 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/11 22:03:36 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	image_pixel_put(int color, int x, int y, t_node *tool)
-{
-	char	*pixel;
-
-	pixel = tool->img_addr + (y * tool->size_line + x * \
-								(tool->bits_per_pixel / 8));
-	*(int *)pixel = color;
-}
 
 static int	color_repeater(int color)
 {
@@ -47,21 +38,24 @@ static int	set_color(int iterations)
 {
 	int	color;
 
+	color = 0;
 	if (iterations == MAX_ITERATIONS)
-		color = 0;
+		return (color);
 	else
 	{
-		color = (int)map_color(iterations);
-		color = color_repeater(color);
+		if (iterations < 10)
+		color = 255255255;
+		iterations = (int)map_color(iterations, 1, 255);
+		color = color_repeater(iterations);
 	}
 	return (color);
 }
 
 static int	select_fractal(double cr, double ci, t_node *tool)
 {
-	if (tool->fractol == 1)
+	if (tool->fractal == 1)
 		return (mandelbrot(cr, ci));
-	else if (tool->fractol == 2)
+	else if (tool->fractal == 2)
 		return (julia(cr, ci, tool));
 	else
 		return (burningship(cr, ci));
@@ -81,8 +75,8 @@ void	draw_set(t_node *tool)
 		x = 0;
 		while (x < WINDOW_SIZE_WIDTH)
 		{
-			cr = map_real(x);
-			ci = map_imaginary(y);
+			cr = map_real(x, -2, 2);
+			ci = map_imaginary(y, -2, 2);
 			cr = cr * tool->scale + tool->camera_x;
 			ci = ci * tool->scale + tool->camera_y;
 			iterations = select_fractal(cr, ci, tool);
