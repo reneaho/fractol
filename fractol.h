@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
-/*   Updated: 2022/08/11 21:58:47 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/12 16:47:41 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_node
 	double	mouse_x;
 	double	mouse_y;
 	double	scale;
+	double	mouse_stop;
 }		t_node;
 
 void	initialize_struct(t_node *tool);

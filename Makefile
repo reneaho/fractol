@@ -6,13 +6,13 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/08/11 21:55:44 by raho             ###   ########.fr        #
+#    Updated: 2022/08/13 17:43:05 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 LIB = libft/libft.a
 LIBFTINCL = libft/
 MLXLIB = /usr/local/lib

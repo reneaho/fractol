@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:02:28 by raho              #+#    #+#             */
-/*   Updated: 2022/08/11 22:06:12 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/13 17:42:47 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ int	mouse_click(int button, int x, int y, void *param)
 		tool->scale = tool->scale * 0.9;
 	else if (button == LINUX_MOUSE_WHEEL_DOWN || button == MAC_MOUSE_WHEEL_DOWN)
 		tool->scale = tool->scale * 1.1;
+	else if (button == LINUX_MOUSE_LEFT_CLICK || button == MAC_MOUSE_LEFT_CLICK)
+	{
+		if (tool->mouse_stop == 0)
+			tool->mouse_stop = 1;
+		else
+			tool->mouse_stop = 0;
+	}
 	erase_map(tool);
 	draw_set(tool);
 	return (0);
@@ -81,10 +88,10 @@ int	mouse_hover(int x, int y, void *param)
 	tool = (t_node *)param;
 	if ((x >= 0 && x < WINDOW_SIZE_WIDTH) && (y >= 0 && y < WINDOW_SIZE_HEIGHT))
 	{
-		tool->mouse_x = map_real(x, -2, 2);
-		tool->mouse_y = map_imaginary(y, -2, 2);
-		if (tool->fractal == 2)
+		if (tool->mouse_stop == 1)
 		{
+			tool->mouse_x = map_real(x, -2, 2);
+			tool->mouse_y = map_imaginary(y, -2, 2);
 			erase_map(tool);
 			draw_set(tool);
 		}
