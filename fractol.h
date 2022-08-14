@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
-/*   Updated: 2022/08/12 16:47:41 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/14 18:12:34 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@
 
 # include "libft/libft.h"
 # include "mlx.h"
-# include <fcntl.h>
-# include <math.h>
 
 typedef struct s_node
 {
