@@ -6,47 +6,38 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:20:23 by raho              #+#    #+#             */
-/*   Updated: 2022/08/11 22:03:36 by raho             ###   ########.fr       */
+/*   Updated: 2022/09/04 20:35:47 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	color_repeater(int color)
+static void	image_pixel_put(int color, int x, int y, t_node *tool)
 {
-	int	temp;
+	char	*pixel;
 
-	temp = color;
-	if (color > 0)
-	{
-		color = color * 1000;
-		color = color + temp;
-		color = color * 1000;
-		color = color + temp;
-	}
-	else if (color < 0)
-	{
-		color = color * 1000;
-		color = color - temp;
-		color = color * 1000;
-		color = color - temp;
-	}
-	return (color);
+	pixel = tool->img_addr + ((y * tool->size_line) + (x * \
+								(tool->bits_per_pixel / 8)));
+	*(int *)pixel = color;
 }
 
 static int	set_color(int iterations)
 {
+	int	alpha;
+	int	red;
+	int	green;
+	int	blue;
 	int	color;
 
-	color = 0;
 	if (iterations == MAX_ITERATIONS)
-		return (color);
+		color = 0x000000;
 	else
 	{
-		if (iterations < 10)
-		color = 255255255;
-		iterations = (int)map_color(iterations, 1, 255);
-		color = color_repeater(iterations);
+		alpha = 0;
+		red = (int)map_color(iterations, 0, 150);
+		green = (int)map_color(iterations, 0, 240);
+		blue = (int)map_color(iterations, 0, 255);
+		color = (alpha << 24) | (red << 16) | (green << 8) | blue;
 	}
 	return (color);
 }
@@ -86,5 +77,5 @@ void	draw_set(t_node *tool)
 		y++;
 	}
 	mlx_put_image_to_window(tool->mlx_ptr, tool->win_ptr, \
-											tool->img_ptr, 0, 0);
+							tool->img_ptr, 0, 0);
 }

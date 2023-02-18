@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
-/*   Updated: 2022/08/11 21:58:47 by raho             ###   ########.fr       */
+/*   Updated: 2022/09/04 20:36:39 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@
 
 # include "libft/libft.h"
 # include "mlx.h"
-# include <fcntl.h>
-# include <math.h>
 
 typedef struct s_node
 {
@@ -64,11 +62,11 @@ typedef struct s_node
 	double	mouse_x;
 	double	mouse_y;
 	double	scale;
+	double	mouse_stop;
 }		t_node;
 
 void	initialize_struct(t_node *tool);
 void	reinitialize_struct(t_node *tool);
-void	image_pixel_put(int color, int x, int y, t_node *tool);
 void	draw_set(t_node *tool);
 int		mandelbrot(double cr, double ci);
 int		julia(double cr, double ci, t_node *tool);
@@ -79,7 +77,6 @@ int		mouse_hover(int x, int y, void *param);
 double	map_real(int x, double newmin, double newmax);
 double	map_imaginary(int y, double newmin, double newmax);
 double	map_color(int iterations, double newmin, double newmax);
-void	erase_map(t_node *tool);
 int		close_program(t_node *tool);
 
 #endif
