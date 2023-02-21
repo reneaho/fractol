@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:27 by raho              #+#    #+#             */
-/*   Updated: 2022/09/04 20:36:39 by raho             ###   ########.fr       */
+/*   Updated: 2023/02/21 15:18:21 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define MAC_MOUSE_LEFT_CLICK 1
 # define MAC_MOUSE_RIGHT_CLICK 2
 
-# include "libft/libft.h"
+# include "libft.h"
 # include "mlx.h"
 
 typedef struct s_node

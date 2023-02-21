@@ -6,37 +6,36 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/09/04 20:42:34 by raho             ###   ########.fr        #
+#    Updated: 2023/02/21 15:17:18 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 LIB = libft/libft.a
-LIBFTINCL = libft/
 MLXLIB = /usr/local/lib
 MLXINCL = /usr/local/include
-FRACTOLINCL = ./
-SRCS = main.c hooks.c draw_set.c fractals.c	initialize_struct.c	\
+SOURCE = main.c hooks.c draw_set.c fractals.c	initialize_struct.c	\
 		mapping_functions.c
-OBJS = $(SRCS:.c=.o)
+SRC = $(addprefix source/,$(SOURCE))
+OBJ = $(SRC:.c=.o)
+INCLUDE = -Iinclude -I $(MLXINCL) -Ilibft
 MLXLINK = -lmlx -framework OpenGL -framework Appkit
+CFLAGS = -Wall -Wextra -Werror $(INCLUDE)
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIB) -I $(LIBFTINCL) -I $(MLXINCL) \
-	-I $(FRACTOLINCL) $(MLXLINK) -o $(NAME)
+$(NAME): $(LIB) $(OBJ)
+	$(CC) $(OBJ) $(LIB) $(INCLUDE) $(MLXLINK) -o $(NAME)
 
 $(LIB):
 	make -C libft
 
 clean:
 	make -C libft clean
-	rm -f $(OBJS)
+	rm -f $(OBJ)
 
 fclean: clean
 	make -C libft fclean
