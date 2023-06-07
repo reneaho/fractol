@@ -1,10 +1,9 @@
 # fractol - a simple fractal exploring program
-There are 3 fractals that you can give as arguments to the executable:\
-Mandelbrot\
-Julia\
-BurningShip\
-Movement: Arrow keys  Zoom: Mouse scroll wheel  \
-Julia has also mouse cursor movement to change the fractal's values and mouse left click to lock/unlock the current values.
+There are 3 fractals that you can give as arguments to the executable: Mandelbrot, Julia and BurningShip
+Movement: Arrow keys\
+Zoom: Mouse scroll wheel\
+Change Julia set values: Mouse cursor movement\
+Lock/Unlock Julia set values: Mouse left click\
 
 ## how to run
 make\
