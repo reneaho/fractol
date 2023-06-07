@@ -3,7 +3,7 @@ There are 3 fractals that you can give as arguments to the executable: Mandelbro
 Movement: Arrow keys\
 Zoom: Mouse scroll wheel\
 Change Julia set values: Mouse cursor movement\
-Lock/Unlock Julia set values: Mouse left click\
+Lock/Unlock Julia set values: Mouse left click
 
 ## how to run
 make\
