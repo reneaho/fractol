@@ -1,4 +1,4 @@
-# fractol - Fractal exploring program
+# fractol - Fractal Visualization
 There are 3 fractals that you can give as arguments to the executable: Mandelbrot, Julia and BurningShip\
 Movement: Arrow keys\
 Zoom: Mouse scroll wheel\
