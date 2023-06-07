@@ -1,11 +1,11 @@
-# fractol - fractal exploring program
+# fractol - Fractal exploring program
 There are 3 fractals that you can give as arguments to the executable: Mandelbrot, Julia and BurningShip\
 Movement: Arrow keys\
 Zoom: Mouse scroll wheel\
 Change Julia set values: Mouse cursor movement\
 Lock/Unlock Julia set values: Mouse left click
 
-## how to run
+## How to run
 make\
 ./fractol <fractal's_name>
 
