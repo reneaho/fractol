@@ -4,7 +4,7 @@ Arrow keys to move and mouse scroll to zoom.\
 Julia has also mouse cursor movement to change the fractal's values and mouse left click to lock/unlock the current values.
 
 ## how to run
-make
+make\
 ./fractol <fractal's_name>
 
 ![fractal_mandelbrot](https://github.com/reneaho/fractol/assets/22603820/41f9c7e9-1fae-4414-b454-736e4281d72f)
