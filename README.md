@@ -1,5 +1,8 @@
 # fractol - a simple fractal exploring program
-There are 3 fractals that you can give as arguments to the executable: Mandelbrot, Julia and BurningShip.\
+There are 3 fractals that you can give as arguments to the executable:\
+Mandelbrot\
+Julia\
+BurningShip\
 Arrow keys to move and mouse scroll to zoom.\
 Julia has also mouse cursor movement to change the fractal's values and mouse left click to lock/unlock the current values.
 
